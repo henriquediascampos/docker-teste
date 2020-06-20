@@ -1,0 +1,18 @@
+FROM ubuntu:15.04
+
+
+RUN apt-transport-https && apt-get update 
+RUN apt-get upgrade
+
+RUN apt-get install openjdk-7-jdk -y
+    # && sudo apt-get upgrade \
+# RUN apt-get update && apt-get upgrade -y \
+#     && apt-get install -y apt-utils \
+#     && apt-get install sudo \
+#     && sudo apt-get install locales -y \
+#     && sudo apt-get update && apt-get upgrade 
+#     && sudo apt-get install openjdk-7-jdk -y
+#     # && apt-get install -y unzip \
+#     # && apt-get clean 
+
+RUN cat /etc/lsb-release

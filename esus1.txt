@@ -1,0 +1,21 @@
+FROM openjdk:7
+RUN apt-get update && apt-get install -y \
+    && apt-get install -y apt-utils \
+    && apt-get install sudo \
+    && apt-get install locales \
+    && apt-get install -y unzip \
+    && apt-get update && apt-get update \
+    && apt-get clean 
+    # && rm -rf /var/lib/apt/lists
+RUN mkdir /pec
+COPY esus.zip /pec
+RUN unzip /pec/esus.zip -d /pec/
+RUN chmod +x /pec/instalador_linux.sh
+RUN apt-get install -y locales
+RUN sudo locale-gen
+RUN /pec/instalador_linux.sh
+RUN chmod +x /opt/e-SUS/jboss-as-7.2.0.Final/bin/init.d/jboss-as-standalone-lsb.sh
+CMD ls $JAVA_HOME/  \
+    && sudo sh /opt/e-SUS/jboss-as-7.2.0.Final/bin/init.d/jboss-as-standalone-lsb.sh start
+#Inicializate esus
+# CMD ["sudo", "sh", "/opt/e-SUS/jboss-as-7.2.0.Final/bin/init.d/jboss-as-standalone-lsb.sh", "start"]
